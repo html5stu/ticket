@@ -1,7 +1,6 @@
 	
 	
 	//机选一注
-	
    	var selectOne=$(".selectOne");
 	selectOne.click(function(){
 		 var reds=[parseInt(Math.random()*33+1)]; //1-33的随机数
