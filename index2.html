@@ -297,8 +297,8 @@
 			</div>
 			<div class="finish-beeting">
 				<div class="mui-pull-left mui-text-center">
-					<p  style="margin-bottom: 0;"><span class="finish-money color-yellow">12877.0</span><span class="color-white">元</span></p>
-					<p  style="margin-bottom: 0;" class="color-white"><span class="finish-beetNum">123</span>注 <span class="mul-num"></span>倍</p>
+					<p  style="margin-bottom: 0;"><span class="finish-money color-yellow">0</span><span class="color-white">元</span></p>
+					<p  style="margin-bottom: 0;" class="color-white"><span class="finish-beetNum">0</span>注 <span class="mul-num"></span>倍</p>
 				</div>
 				<div class="mui-pull-right" style="margin-top: 9px;margin-right: 5px;">
 					<button class="mui-btn mui-btn-danger" style="padding: 5px 20px;border-radius: 3px;">投注</button>
@@ -309,7 +309,7 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/mui.js"></script>
 	<script src="js/mui.view.js"></script>
-	<script src="js/select.js">	</script>
+	<script src="js/select.js"></script>
 	<script>
 		mui.init({
 			swipeBack: false,
@@ -319,6 +319,7 @@
 			for(var i=1;i<34;i++){
 				redArr.push(i)
 			}
+			
 			$(redArr).each(function(index,value){
 				var li=$("<li>"+(index+1)+"</li>")
 				$(".red").append(li)
@@ -488,46 +489,91 @@
       						//红球
       						$(redArray).each(function(index,value){
       							var val=redArray[index];
-      							console.log(val)
       							var $li='<li class="mui-table-view-cell color-red">'+val+'</li>';
 				      			ul.append($li);
+				      			
 				      			con_list.append(ul)
       						})
       						//篮球
       						$(blueArray).each(function(index,value){
       							var val=blueArray[index];
-      							console.log(val)
       							var $li='<li class="mui-table-view-cell color-blue">'+val+'</li>';
 				      			ul.append($li);
 				      			con_list.append(ul)
-      						})
+      						});
+      						let bett=$(".Betting").text();//注数
+      						let $hiddenLi='<li class="mui-table-view-cell hiddedLi" style="display:none" name="hiddenLI">'+bett+'</li>';
+      						ul.append($hiddenLi);
+      						$(".mul-num").text($(".num").val());
+      						//计算总钱数
+      						let bettArr=[];
+							let aa=$("[name=hiddenLI]");
+							for (let i=0;i<aa.length;i++){
+								bettArr.push(aa[i].innerHTML)
+							}
+							var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
+							var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+							if(bettArr.length == 0) allBettNum=0;
+							allBettNum=computerSelect+allBettNum;
+							$(".finish-beetNum").text(allBettNum);
+							$(".finish-money").text(parseInt(2*$(".num").val()*(allBettNum)).toFixed(2));
 					}
 			}
+			//删除某一个号码
+			$(".content-list").on('click','.icon-2guanbi',function(){
+				$(this).parent().remove();
+				$(".mul-num").text($(".num").val());
+					let bettArr=[];
+					let aa=$("[name=hiddenLI]");
+					for (let i=0;i<aa.length;i++){
+						bettArr.push(aa[i].innerHTML)
+					}
+					var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
+					var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+					if(bettArr.length == 0) allBettNum=0;
+					allBettNum=computerSelect+allBettNum;
+					$(".finish-beetNum").text(allBettNum);
+					$(".finish-money").text(parseInt(2*$(".num").val()*(allBettNum)).toFixed(2));
+			})
+			
+			//弹窗
 			$("#mask").click(function(){
 				$(this).hide();
 				$("#beetinglist").hide();
 			})
-			
-			//删除某一个号码
-			$(".content-list").on('click','.icon-2guanbi',function(){
-				$(this).parent().remove();
+			//继续选号
+			$(".goToselect").click(function(){
+				$("#mask").hide();
+				$("#beetinglist").hide();
+				deleteALlnumber();
+				calculate();
+				document.querySelector('.Betting').innerHTML=0;
+				document.querySelector('.money').innerHTML=0;
 				
 			})
 			
 			//加倍
 			$(".plus").click(function(){
 				$(".num").val(parseInt($(".num").val())+1);
-				$(".mul-num").text($(".num").val())
+				$(".mul-num").text($(".num").val());
+				$(".finish-money").text(parseInt(2*$(".num").val()*$(".finish-beetNum").text()).toFixed(2))
 			})
 			//减倍数
 			$(".del").click(function(){
 				$(".num").val(parseInt($(".num").val())-1);
 				$(".mul-num").text($(".num").val())
+				$(".finish-money").text(parseInt(2*$(".num").val()*$(".finish-beetNum").text()).toFixed(2))
 				if($(".num").val()<=1){
 					$(".num").val(1)
 					$(".mul-num").text($(".num").val())
+					$(".finish-money").text(parseInt(2*$(".num").val()*$(".finish-beetNum").text()).toFixed(2))
 				}
-			})
+			});
+		
+	
+	
+			
+			
 	</script>
 
 </html>

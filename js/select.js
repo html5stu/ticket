@@ -1,8 +1,22 @@
 	
 	
-	//机选一注
+	
+		//机选一注
    	var selectOne=$(".selectOne");
 	selectOne.click(function(){
+		//计算总钱数
+		let bettArr=[];
+		let aa=$("[name=hiddenLI]");
+		for (let i=0;i<aa.length;i++){
+			bettArr.push(aa[i].innerHTML)
+		}
+		var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
+		var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+		if(bettArr.length == 0) allBettNum=0;
+		allBettNum=computerSelect+allBettNum+1;
+		$(".finish-beetNum").text(allBettNum);
+		$(".finish-money").text(parseInt(2*$(".num").val()*(allBettNum)).toFixed(2));
+		
 		 var reds=[parseInt(Math.random()*33+1)]; //1-33的随机数
 			  //定义一个数组 用来装蓝色球的随机数
 			  var blues=[parseInt(Math.random()*16+1)]; //1-16的随机数
@@ -21,24 +35,24 @@
 	      reds.sort(function compare(a,b) {
 	        return a-b;
 	      })
-			 var OneArray=reds.concat(blues);
-      		var ul=$("<ul class='mui-table-view'></ul>");
+			var OneArray=reds.concat(blues);
+      		var ul=$("<ul class='mui-table-view computerSelect'></ul>");
       		var contentlist=$(".content-list");
       		var $li_01='<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray"></li>';
       			ul.append($li_01);
       			contentlist.append(ul)
       		$(OneArray).each(function(index,value){
       			var val=OneArray[index];
-      			console.log(val)
       			var $li='<li class="mui-table-view-cell color-red">'+val+'</li>';
       			ul.append($li);
       			contentlist.append(ul)
-      		})
+      		});
 	})
 	
 	//机选五注
 		var selectFive=$(".selectFive");
 		$(".selectFive").click(function(){
+			
 				var a=random();
 				var b=random();
 				var c=random();
@@ -47,10 +61,24 @@
 				var concatArr=[];
 				concatArr.push(a,b,c,d,e);
 				var contentlist=$(".content-list");
+				
+				//计算总钱数
+				let bettArr=[];
+				let aa=$("[name=hiddenLI]");
+				for (let i=0;i<aa.length;i++){
+					bettArr.push(aa[i].innerHTML)
+				}
+				var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
+				var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+				if(bettArr.length == 0) allBettNum=0;
+				allBettNum=computerSelect+allBettNum+5;
+				$(".finish-beetNum").text(allBettNum);
+				$(".finish-money").text(parseInt(2*$(".num").val()*(allBettNum)).toFixed(2));
+				
 				$(concatArr).each(function(index,value){
 					var val=concatArr[index];
 					console.log(val)
-					var ul=$("<ul class='mui-table-view'></ul>");
+					var ul=$("<ul class='mui-table-view computerSelect'></ul>");
 					ul.append('<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray">'+'</li>'+
 					'<li class="mui-table-view-cell color-red">'+val[0]+'</li>'+
 					'<li class="mui-table-view-cell color-red">'+val[1]+'</li>'+
