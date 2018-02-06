@@ -6401,7 +6401,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
                 //vertical 如果preventDefault会导致无法滚动
             } else {
 
-                    event.preventDefault();      
+//                  event.preventDefault();      
                     // if(target.tagName == 'A') {
                     //     // fixed 底部选项卡href 无法跳转 && stop hash change
                     //     var curr_href = location.hostname + location.pathname,

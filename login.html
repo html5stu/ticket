@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta itemprop="name" content="零用贷款，“贷”来幸福，申请简单、极速放款"/>
+		<meta name="description" itemprop="description" content="零用宝，申请简单，快速到账。您的信用可以换钱，快来试试吧" />
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+		<title>零用宝</title>
+		<link rel="shortcut icon" type="img/x-icon" href="img/fav.ico"/>
+		<link rel="stylesheet" href="css/basic.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/index.css" />
+ 
+	</head>
+	<body>
+		<div class="top_banner">
+			<img src="img/banner.png">
+		</div>
+		<div class="login">
+			
+				<div class="account"> 
+					<input class="account_text" id="phone" type="text" name="phone" placeholder="请输入您的账号">
+				</div>
+				<div class="passwordbox" id="password_login">
+					<input type="password" class="password" id="password" name="password" placeholder="请输入您的密码"> 
+				</div>
+				<div class="passwordbox yzm_input none" id="dx">
+					<input type="text" name="code" class="code" id="code" value="" placeholder="请输入手机验证码"/>
+					<!--<a href="javascript:;" id="on_yzm">获取验证码</a>-->
+					<input type="button" name="on_yzm" id="on_yzm" value="获取验证码" />
+				</div>
+				<p id="cont"></p>
+				<input type="hidden" name="" id="changeVal" value="1" />
+				<div class="login_code">
+					手机验证码登录
+				</div>
+				<div class="login_account">
+					账号密码登录
+				</div>
+				<!--<a href="javascript:;" class="login_code log_pw"></a>
+				<a href="javascript:;" class="login_account log_pw">账号密码登录</a>-->
+				<div class="login_btn"> 
+					<button class="login_go">登录</button> 
+					<a href="regisiter.html">没有账号,前往注册</a> 
+				</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/md5.js"></script>
+		<script>
+			$(function(){
+				var login_code=$(".login_code");//验证码
+				var login_account=$(".login_account");//账号密码
+				login_code.click(function(){
+					$(this).css("display","none");
+					login_account.css("display","block");
+					$("#password_login").css("display","none");
+					$("#dx").css("display","block");
+					changeVal=$("#changeVal").val(2);
+				})
+				login_account.click(function(){
+					$(this).css("display","none");
+					login_code.css("display","block");
+					$("#password_login").css("display","block");
+					$("#dx").css("display","none");
+					changeVal=$("#changeVal").val(1);
+				})
+				
+				//判断变量是否为空
+				function checkVar(param){
+					if(param=='' || param==undefined || param==null){
+						return false;
+					}
+					return true;
+				}
+				//获取验证码
+				var on_yzm=$('#on_yzm');
+				on_yzm.click(function(){
+				var phonePattern = /(^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$)|(^(([0\+]\d{2,3})?(0\d{2,3}))(\d{7,8})((\d{3,}))?$)|(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+				var phone=$('#phone').val();//手机号
+		        var cont=$("#cont");//错误提示信息
+				var times=60;
+				var timer=null;
+				var url1=host+"wechatLogin/user/get_login_code?phone="+phone;
+				
+				if(!checkVar(phone)){
+			 	cont.text('*请输入手机号').show().delay(2000).fadeOut();
+			 	return;
+				 }else if(phonePattern.test(phone) == false){
+			 	cont.text('*请输入正确的手机格式').show().delay(2000).fadeOut();
+			 	return;
+				}
+				timer=setInterval(function(){
+				times--;
+				on_yzm.attr("disabled","true");
+				on_yzm.val(times + "秒后重试");
+				if(times==0){
+			          on_yzm.removeAttr("disabled");
+			          on_yzm.val("重新获取验证码");
+			          on_yzm.css({"color":"#ff9f00"});
+			          clearInterval(timer);
+			          times = 60;
+			        }
+			},1000)
+			$.ajax({
+			  	type:"post",
+			  	url:url1,
+			  	async:true,
+			  	success:function(res){
+			  		console.log(res)
+	//				  	code=0成功   code=-1手机号已被注册
+					cont.text(res.message).show().delay(3000).fadeOut();
+					if(res.message!="成功获取验证码"){
+						 clearInterval(timer);
+					}
+			  	},
+		  })
+	})
+				//登录
+				$(".login_go").click(function(){
+					var phone=$("#phone").val();
+					var pwd=$("#password").val();
+					var hash=hex_md5(pwd).toUpperCase();
+					var code=$("#code").val();
+					var cont=$("#cont");
+					var parten = /^ +| +$/g;//密码不能有空格正则
+					var phonePattern = /(^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$)|(^(([0\+]\d{2,3})?(0\d{2,3}))(\d{7,8})((\d{3,}))?$)|(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+					
+					var url1=host+"wechatLogin/user/login_account?phone="+phone+"&password="+hash;
+					var url2=host+"wechatLogin/user/login_code?phone="+phone+"&code="+code;
+					var url3;
+					
+				if(!checkVar(phone)){
+				 	cont.text('*请输入手机号').show().delay(2000).fadeOut();
+				 	return;
+					}else if(phonePattern.test(phone) == false){
+				 	cont.text('*请输入正确的手机格式').show().delay(2000).fadeOut();
+				 	return;
+				}else if(parten.test(pwd)){
+					alert("不能含有空格");
+					return;
+				}
+				if($("#changeVal").val()==1){//账号密码登录
+					url3=url1;
+				}else if($("#changeVal").val()==2){ //验证码登录
+					url3=url2;
+				}
+				$.ajax({
+					type:"post",
+					url:url3,
+					async:false,
+					success:function(res){
+						console.log(res)
+						if(res.code==0){
+							var uid=res.data.uid;
+							var token=res.data.token;
+							sessionStorage.setItem("id",uid);
+							sessionStorage.setItem("tok",token);
+							sessionStorage.setItem('phone',phone);
+							window.location.href="center.html";
+						}else{
+							alert(res.message)
+						}
+					},
+					error:function(res){
+						alert(res.message)
+					}
+				});
+			})
+			
+	})
+		</script>
+	</body>
+</html>

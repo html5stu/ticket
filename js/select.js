@@ -36,7 +36,7 @@
 	        return a-b;
 	      })
 			var OneArray=reds.concat(blues);
-      		var ul=$("<ul class='mui-table-view computerSelect'></ul>");
+      		var ul=$("<ul class='mui-table-view computerSelect list'></ul>");
       		var contentlist=$(".content-list");
       		var $li_01='<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray"></li>';
       			ul.append($li_01);
@@ -74,11 +74,10 @@
 				allBettNum=computerSelect+allBettNum+5;
 				$(".finish-beetNum").text(allBettNum);
 				$(".finish-money").text(parseInt(2*$(".num").val()*(allBettNum)).toFixed(2));
-				
 				$(concatArr).each(function(index,value){
 					var val=concatArr[index];
-					console.log(val)
-					var ul=$("<ul class='mui-table-view computerSelect'></ul>");
+//					console.log(val)
+					var ul=$("<ul class='mui-table-view computerSelect list'></ul>");
 					ul.append('<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray">'+'</li>'+
 					'<li class="mui-table-view-cell color-red">'+val[0]+'</li>'+
 					'<li class="mui-table-view-cell color-red">'+val[1]+'</li>'+

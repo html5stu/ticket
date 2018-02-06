@@ -1,573 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>彩票</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_526177_mbhc815vs0rg4x6r.css"/>
-		<link rel="stylesheet" href="css/mui.min.css">
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_526177_oeu77ano4tl6jemi.css" />
 		<style>
-			html,
-			body {
-				background-color: #efeff4;
-				font-size: 13px;
-			}
-			.mui-views,
-			.mui-view,
-			.mui-pages,
-			.mui-page,
-			.mui-page-content {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 100%;
-				height: 100%;
-				background-color: #efeff4;
-			}
-			.mui-pages {
-				top: 46px;
-				height: auto;
-			}
-			.mui-scroll-wrapper,
-			.mui-scroll {
-				background-color: #efeff4;
-			}
-			.mui-page.mui-transitioning {
-				-webkit-transition: -webkit-transform 300ms ease;
-				transition: transform 300ms ease;
-			}
-			.mui-page-left {
-				-webkit-transform: translate3d(0, 0, 0);
-				transform: translate3d(0, 0, 0);
-			}
-			.mui-ios .mui-page-left {
-				-webkit-transform: translate3d(-20%, 0, 0);
-				transform: translate3d(-20%, 0, 0);
-			}
-			.mui-navbar {
-				position: fixed;
-				right: 0;
-				left: 0;
-				z-index: 10;
-				height: 44px;
-				background-color: #f7f7f8;
-			}
-			.mui-navbar .mui-bar {
-				position: absolute;
-				background: transparent;
-				text-align: center;
-			}
-			.mui-android .mui-navbar-inner.mui-navbar-left {
-				opacity: 0;
-			}
-			.mui-ios .mui-navbar-left .mui-left,
-			.mui-ios .mui-navbar-left .mui-center,
-			.mui-ios .mui-navbar-left .mui-right {
-				opacity: 0;
-			}
-			.mui-navbar .mui-btn-nav {
-				-webkit-transition: none;
-				transition: none;
-				-webkit-transition-duration: .0s;
-				transition-duration: .0s;
-			}
-			.mui-navbar .mui-bar .mui-title {
-				display: inline-block;
-				width: auto;
-			}
-			.mui-page-shadow {
-				position: absolute;
-				right: 100%;
-				top: 0;
-				width: 16px;
-				height: 100%;
-				z-index: -1;
-				content: '';
-			}
-			.mui-page-shadow {
-				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
-				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
-			}
-			.mui-navbar-inner.mui-transitioning,
-			.mui-navbar-inner .mui-transitioning {
-				-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
-				transition: opacity 300ms ease, transform 300ms ease;
-			}
-			.mui-page {
-				display: none;
-			}
-			.mui-pages .mui-page {
-				display: block;
-			}
-			
-			.head {
-				height: 40px;
-			}
-			#head {
-				line-height: 40px;
-			}
-			.head-img {
-				width: 40px;
-				height: 40px;
-			}
-			#head-img1 {
-				position: absolute;
-				bottom: 10px;
-				right: 40px;
-				width: 40px;
-				height: 40px;
-			}
-			.update {
-				font-style: normal;
-				color: #999999;
-				margin-right: -25px;
-				font-size: 15px
-			}
-			.mui-fullscreen {
-				position: fixed;
-				z-index: 20;
-				background-color: #000;
-			}
-			.mui-ios .mui-navbar .mui-bar .mui-title {
-				position: static;
-			}
-			/*自定义css*/
 			body{
-				padding-bottom: 50px;
-			}
-			.mui-content{
 				background: #fff;
+				font-size: 15px!important;
 			}
-			ul,li{
 				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-			.padd5{
-				padding: 5px;
-			}
-			.font-12{
-				font-size: 12px;
-			}
-			.com-option{
-				display: inline-block;
-				border:1px solid #Ccc;
-				padding: 0 10px;
-				color:#000;
-				margin-top: 5px;
 			}
 			.mui-content{
 				background: #fff;
 			}
-			.red li{
-				display: inline-block;
-				height: 35px;
-				width: 35px;
-				line-height: 35px;
-				border:1px solid red;
-				text-align: center;
-				border-radius: 30px;
-				margin:6px;
-				color: red;
+			.doubleBall-content{
+				margin: 0 15px;
 			}
-			.blue li{
-				display: inline-block;
-				height: 35px;
-				width: 35px;
-				line-height: 35px;
-				border:1px solid red;
-				text-align: center;
-				border-radius: 30px;
-				margin:6px;
-				color: blue;
-				border:1px solid blue;
+			.bg-white{
+				background: #fff!important;
 			}
-			.red .active {
-				color: #fff;
-				background: red;
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+				border-right: 0;
+				border-bottom: 0;
 			}
-			
-			.blue .active {
-				color: #FFF;
-				background: blue;
-			}
-			.mr20{
-				margin-right: 20px;
-			}
-			.footer{
-				position: absolute;
-			    left: 0;
-			    right: 0;
-			    bottom: -100px;
-				background: rgba(0,0,0,0.8);
-				height: 50px;
-				color: #fff;
-			}
-			.icon-delete{
-				padding: 0 10px 0 10px;
-				border-right: 1px solid rgba(255,255,255,0.6);
-			}
-			.mui-icon-trash{
-				color: #fff;
-			}
-			#btn-sure{
-				display: block;
-				padding: 6px 22px;
-			}
-			
-			/*投注单css*/
-			.mui-scroll-wrapper, .mui-scroll{
-				background: #fff;
-			}
-			.mui-table-view:before,.mui-table-view:after{
+			.mui-table-view:before,.mui-table-view:after,.mui-table-view-cell:after{
 				height: 0;
 			}
-			.stage{
-				color: red;
-				padding: 10px;
-				padding-bottom: 3px;
-				border-bottom: 1px solid #ccc;
-			}		
-			.border{
-				border: 1px solid #ccc;
-			}	
-			.padd{
-				padding: 3px 5px;
+			.double-list{
+				margin-top: 20px;
 			}
-			.mr5{
-				margin-right: 5px!important;
-			}
-			.mui-table-view-cell:after{
-				height: 0;	
-			}
-			.fl{
-				float: left;
-			}
-			.w30{
-				width: 30%;
-			}
-			.content-list{
-				text-align: center;
-				width: 90%;
-			    margin: 20px auto;
-			    border-left: 1px solid #ccc;
-			    border-right: 1px solid #ccc;
-			    padding-bottom: 20px;
-			    border-bottom: 1px solid #ccc;
-			    border-right: 1px solid #ccc;
-			    border-left: 1px solid #ccc;
-			    border-bottom: 1px solid #ccc;
-			   height: 200px;
-			   overflow: auto;
-			}
-			.color-red{
-				color: red;
-			}
-			.color-blue{
-				color: blue;
-			}
-			.color-gray{
-				color:#ccc;
-			}
-			.content-list ul{
-				width: 90%;
-			    border-bottom: 1px dashed #ccc;
-			    margin: 0 auto;
-			}
-			.content-list ul li{
-				width: 11%;
+			.double-list li{
 				display: inline-block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 50%;
+				padding: 0;
+				border: 1px solid red;
+				color: red;
+				margin-right: 3px;
 			}
-			.content-list ul li:last-child{
+			#double6{
 				color: blue;
+				border: 1px solid blue;
+			}
+			.double-list li:last-child{
+				float: right;
+				color: #333;
+				border:1px solid #333;
+			}
+			.betting-doubleBall,.betting-threed,.betting-seven{
+				color: #fff;
+			    display: block;
+			    background: red;
+			    height: 27px;
+			    width: 61px;
+			    line-height: 27px;
+			    text-align: center;
+			    float: right;
+			    margin-top: 10px;
 			}
 		</style>
 	</head>
-
-	<body class="mui-fullscreen">
-		<!--页面主结构开始-->
-		<div id="app" class="mui-views">
-			<div class="mui-view">
-				<div class="mui-navbar">
-				</div>
-				<div class="mui-pages">
-				</div>
-			</div>
-		</div>
-		<!--页面主结构结束-->
-		
-		<!--单页面开始-->
-		<div id="setting" class="mui-page">
-			<!--页面标题栏开始-->
-			<div class="mui-navbar-inner mui-bar mui-bar-nav">
-				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>
-				</button>
-				<h1 class="mui-center mui-title">双色球 普通投注</h1>
-			</div>
-			<!--页面标题栏结束-->
-			
-			<!--页面主内容区开始-->
-			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<p class="mui-clearfix padd5 font-12"><span class="mui-pull-left" style="margin-top: 7px;">最少选择6个<i style="color: red;">红球</i>，1个<i style="color: blue;">蓝球</i></span><span class="mui-pull-right com-option">机选</span></p>
-						<!--红色球和蓝色球开始-->
-						<div class="mui-content-padded ball-list">
-							<ul class="mui-table-view red">
-								
-							</ul>
-							
-							<ul class="mui-table-view blue">
-								
-							</ul>
-						</div>
-						<!--红色球和蓝色球结束-->
-						<!--底部开始  ****确定按钮-->
-						<div class="footer">
-							<div class="mui-content-padded mui-clearfix">
-								<div class="mui-pull-left icon-delete mr20">
-									<span class="mui-icon mui-icon-trash"></span>
-								</div>
-								<div class="mui-pull-left mr20" style="margin-top: 3px;">
-									<span class="Betting">0</span>注<span><span class="money" style="margin-left: 3px;">0</span>元</span>
-								</div>
-								<div class="mui-pull-right" style="margin-top: -3px;">
-									<a href="#beetinglist" class="btn mui-btn-danger" id="btn-sure">确定</a>
-								</div>
-							</div>
-						</div>
-						<!--底部结束  ****确定按钮-->
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">购彩大厅</span>
+			</a>
+			<a id="defaultTab" class="mui-tab-item">
+				<span class="mui-icon mui-icon-chatbubble"></span>
+				<span class="mui-tab-label">开奖公告</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="javascript:;">
+							<img src="img/banner01.jpg" style="width: 100%;height: 130px;">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/banner01.jpg" style="width: 100%;height: 130px;">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/banner02.jpg" style="width: 100%;height: 130px;">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/banner03.jpg" style="width: 100%;height: 130px;">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="img/banner01.jpg" style="width: 100%;height: 130px;">
+						</a>
 					</div>
 				</div>
-			</div>
-			<!--页面主内容区结束-->
-		</div>
-		<!--单页面结束-->
-		
-		<!--Hello MUI  账号与安全  #account-->
-		<div id="beetinglist" class="mui-page">
-			<div class="mui-navbar-inner mui-bar mui-bar-nav">
-				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>投注
-				</button>
-				<h1 class="mui-center mui-title"></h1>
-			</div>
-			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<p class="stage">第18014期 02-01 19:35(周四)截止投注</p>
-						<ul class="mui-table-view mui-text-center" style="overflow: hidden;padding-left: 26px;">
-							<li class="mui-table-view-cell mui-col-xs-4 mui-col-sm-3 border padd mr5 mui-pull-left w30 selectOne"><i class="icon iconfont icon-jiahao"></i>机选1注</li>
-							<li class="mui-table-view-cell mui-col-xs-4 mui-col-sm-3 border padd mr5 mui-pull-left w30 selectFive"><i class="icon iconfont icon-jiahao"></i>机选5注</li>
-							<li class="mui-table-view-cell mui-col-xs-4 mui-col-sm-3 border padd mui-pull-left w30 goToselect"><i class="icon iconfont icon-jiahao"></i>继续选号</li>
-						</ul>
-						<div class="content-list">
-							
-						</div>
-					</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
 				</div>
 			</div>
+			<!--轮播结束-->
+			<ul class="mui-table-view mui-grid-view mui-grid-9 bg-white">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="doubleBall">
+				    <a href="javascript:;">
+				       <img src="img/doubleball.jpg"/>
+				        <div class="mui-media-body">双色球</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+				    <a href="#">
+				    		  <img src="img/3d.jpg"/>
+				        <div class="mui-media-body">福彩3d</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+				    <a href="#">
+				    		  <img src="img/seven.jpg"/>
+				        <div class="mui-media-body">七乐彩</div>
+				    </a>
+				</li>
+			</ul>
+			<!--九宫格结束-->
+			
+			<div class="doubleBall-content" style="overflow: hidden;">
+				<span>双色球</span>
+				<ul class="mui-table-view double-list">
+					<li class="mui-table-view-cell" id="double0"></li>
+					<li class="mui-table-view-cell" id="double1"></li>
+					<li class="mui-table-view-cell" id="double2"></li>
+					<li class="mui-table-view-cell" id="double3"></li>
+					<li class="mui-table-view-cell" id="double4"></li>
+					<li class="mui-table-view-cell" id="double5"></li>
+					<li class="mui-table-view-cell" id="double6"></li>
+					<li class="mui-table-view-cell icon iconfont icon-shuaxin1" id="refresh0" onclick="getDoubleBall()"></li>
+				</ul>
+				<a href="javascript:;" class="betting-doubleBall">投注</a>
+			</div>
+			<!--双色球结束-->
+			<div class="doubleBall-content" style="overflow: hidden;">
+				<span>福彩3D</span>
+				<ul class="mui-table-view double-list">
+					<li class="mui-table-view-cell" id="threed0"></li>
+					<li class="mui-table-view-cell" id="threed1"></li>
+					<li class="mui-table-view-cell" id="threed2"></li>
+					<li class="mui-table-view-cell icon iconfont icon-shuaxin1" id="refresh1" onclick="getThreed()"></li>
+				</ul>
+				<a href="javascript:;" class="betting-threed">投注</a>
+			</div>
+			<!--福彩3D结束-->
+			<div class="doubleBall-content" style="overflow: hidden;">
+				<span>七乐彩</span>
+				<ul class="mui-table-view double-list">
+					<li class="mui-table-view-cell" id="seven0"></li>
+					<li class="mui-table-view-cell" id="seven1"></li>
+					<li class="mui-table-view-cell" id="seven2"></li>
+					<li class="mui-table-view-cell" id="seven3"></li>
+					<li class="mui-table-view-cell" id="seven4"></li>
+					<li class="mui-table-view-cell" id="seven5"></li>
+					<li class="mui-table-view-cell" id="seven6"></li>
+					<li class="mui-table-view-cell icon iconfont icon-shuaxin1" id="refresh2" onclick="getSeven()"></li>
+				</ul>
+				<a href="javascript:;" class="betting-seven">投注</a>
+			</div>
+			<!--七乐彩结束-->
 		</div>
-	</body>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/mui.js"></script>
-	<script src="js/mui.view.js"></script>
-	<script src="js/select.js">	</script>
-	<script>
-		mui.init({
-			swipeBack: false,
-		});
-		//初始化单页view
-		var viewApi = mui('#app').view({
-			defaultPage: '#setting'
-		});
-		//初始化单页的区域滚动
-		mui('.mui-scroll-wrapper').scroll();
-		var view = viewApi.view;
-		(function($) {
-			//处理view的后退与webview后退
-			var oldBack = $.back;
-			$.back = function() {
-				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
-					viewApi.back();
-				} else { //执行webview后退
-					oldBack();
-				}
-			};
-		})(mui);
-		
-		if(mui.os.stream){
-			document.getElementById("check_update").display = "none";
-		}
-			//循环遍历红色球数字
-			var redArr=[];
-			for(var i=1;i<34;i++){
-				redArr.push(i)
-			}
-			$(redArr).each(function(index,value){
-				var li=$("<li>"+(index+1)+"</li>")
-				$(".red").append(li)
-			})
-			
-			//循环遍历蓝色球数字
-			var blueArr=[];
-			for(var i=1;i<17;i++){
-				blueArr.push(i)
-			}
-			$(blueArr).each(function(index,value){
-				let Li=$("<li>"+(index+1)+"</li>");
-				$(".blue").append(Li);
-			});
-			//计算排列组合
-			 function combination(m,n){   //计算排列组合
-			        return factorial(m,n)/factorial(n,n);  
-			        //就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)
-			    }  
-		    //计算阶乘
-		    function factorial(m,n){  
-		        var num = 1;  
-		        var count = 0;  
-		        for(var i = m;i > 0;i--){  
-		            if(count == n){		//当循环次数等于指定的相乘个数时，即跳出for循环  
-		                break;  
-		            }  
-		            num = num * i;  
-		            count++;  
-		        }  
-		        return num;  
-		    }  
-			//计算多少注多少钱
-			function calculate(){
-				var redActiveLen=$(".red").find("li.active").length;
-				var blueActiveLen=$(".blue").find("li.active").length;
-				if(redActiveLen<6){
-					$(".Betting").text(0);
-					$(".money").text(0);
-					return false;
-				}else{
-					var betting=Number(combination(redActiveLen,6)*(blueActiveLen));
-					$(".Betting").text(betting);
-					var money=Number(betting*2);
-					$(".money").text(money);
-				}
-			}
-			//把产生随机数的数组挂载到原型上
-			Array.prototype.in_array = function(element) {
-				for(var i = 0; i < this.length; i++) {
-					if(this[i] == element) {
-						return true;
-					}
-				}
-				return false;
-			}
-			let btn = document.querySelector(".com-option");
-			let lis = document.querySelectorAll(".red li");
-			let bluelis=document.querySelectorAll(".blue li");
-			let redActive = [],
-				blueActive = [];
-			//点击机选清除掉之前的所有被选中的数字
-			function deleteALlnumber(){
-				let ball_list=document.getElementsByClassName('ball-list')[0];
-				let Li_list=ball_list.getElementsByTagName('li');
-				let $Li_list=$(Li_list);
-				$Li_list.removeClass("active");
-			}
-//			产生随机数方法
-			function  produceRandom(){
-				removeClass();
-				redActive = [];
-				blueActive = [];
-				for(let i = 0; redActive.length < 6; i++) {
-					let radom = Math.random() * 33;
-					let redItem = Math.floor(radom);
-					if(!redActive.in_array(redItem)) {
-						redActive.push(redItem);
-					}
-				}
-				for(let i = 0; blueActive.length < 1; i++) {
-					let radom = Math.random() * 16;
-					let blueItem = Math.floor(radom);
-					if(!blueActive.in_array(blueItem)) {
-						blueActive.push(blueItem);
-					}
-				}
-			}
-		
-			//点击机选产生一组随机数
-			btn.onclick = function () {
-				deleteALlnumber();
-				produceRandom();
-				addClass();
-				calculate();//调用 计算多少注多少钱的方法
-					
-			}
-		//给机选选中的随机数添加active类
-		function addClass() {
-			for (let i of redActive) {
-				lis[i].classList.add("active");
-			}
-
-			for (let i of blueActive) {
-				bluelis[i].classList.add("active");
-			}
-		}
-		//每次点击机选把之前选中的随机数清除
-		function removeClass() {
-			for (let i of redActive) {
-				lis[i].classList.remove("active");
-			}
-			for (let i of blueActive) {
-				bluelis[i].classList.remove("active");
-			}
-		}
-		//计算多少注   多少钱
-			$(".ball-list").find("li").click(function(){
-				$(this).toggleClass("active");
-				calculate();
-			})
-		//点击删除按钮，清除所选号码
-		$(".mui-icon-trash").click(function(){
-			deleteALlnumber();
-			calculate();
-			document.querySelector('.Betting').innerHTML=0;
-			document.querySelector('.money').innerHTML=0;
-			
-		})
-		let btn_sure=document.getElementById("btn-sure");
-		btn_sure.onclick=function(){
-				let beet=document.querySelector('.Betting').innerHTML;
-				let ALlmoney=document.querySelector('.money').innerHTML;
-				let redActiveNum=document.querySelectorAll('.red .active');
-				let blueActiveNum=document.querySelectorAll('.blue .active');
-				var redActiveArr=[];
-				var blueActiveArr=[];
-				for (let i in redActiveNum){
-					redActiveArr.push(redActiveNum[i].innerHTML);
-				}
-				let redArray=redActiveArr.splice(0,redActiveArr.length-6);//选中的红色球数组
-			    let redStr=redArray.join();//红色球字符串
-				for (let i in blueActiveNum){
-					blueActiveArr.push(blueActiveNum[i].innerHTML)
-				}
-				let blueArray=blueActiveArr.splice(0,blueActiveArr.length-6);//选中的蓝色球数组
-			    let blueStr=blueArray.join();//蓝色球字符串
-			    if(redActiveNum.length<6){
-						mui.alert("请至少选择6个红球",'',function(){
-						})
-						return false;
-					}else if(blueActiveNum.length<1){
-						mui.alert("请至少选择1个蓝球",'',function(){
-						})
-						return false;
-					}
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mui.js"></script>
+		<script src="js/refresh.js"></script>
+		<script>
+			mui.init({
 				
-			}
-		
-	</script>
+			})
+			var slider = mui("#slider");
+				slider.slider({
+				interval: 3000
+			});
+			$("#doubleBall").click(function(){
+				window.location.href="doubleBall.html";
+			})
+		</script>
+	</body>
 
 </html>

@@ -1,0 +1,263 @@
+/*注册*/
+.top_banner{
+	padding: 20px 0 15px;
+    text-align: center;
+}
+.top_banner img{
+	width: 40%;
+    max-width: 250px;
+}
+.register,.login{
+	width: 96%;
+    margin-left: 2%;
+    margin-top: 0.2rem;
+}
+.tel{
+    margin: 0 auto;
+    width: 80%;
+    height: 2.2rem;
+    border-bottom: 1px solid #dedede;
+    background: none;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+}
+.number{
+	border: none;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 4%;
+    width: 92%;
+    font-size: 0.7rem;
+    background: none;
+}
+.imgcode{
+	margin: 0 auto;
+    width: 80%;
+    height: 2.2rem;
+    border: none;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #dedede;
+}
+.imgcode_number{
+	outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    width: 50%;
+    padding-left: 4%;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    border: 0;
+    background: none;
+}
+.imgcode_pic{
+	position: relative;
+    z-index: 99999;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    width: 38%;
+    float: right;
+    text-align: center;
+    border-radius: 0 100px 100px 0;
+    color: #1A71FF;
+    font-size: 0.7rem;
+}
+.yzm {
+   margin: 0 auto;
+    width: 80%;
+    height: 2.2rem;
+    border: none;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #dedede;
+}
+.yzm_text{
+	outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    width: 50%;
+    padding-left: 4%;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    border: 0;
+    background: none;
+}
+
+.yzm_pic{
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    width: 45%;
+    float: right;
+    text-align: center;
+    color: #1A71FF;
+    font-size: 0.7rem;
+}
+#sendcode{
+	background: none;
+	color:#ff9f00;
+	font-size: 0.7rem;
+}
+#cont{
+	position: absolute;
+    font-size: 0.8rem;
+    top: 30%;
+    left: 31%;
+    z-index: 1000;
+    display: none;
+   	background:rgba(0,0,0,0.8);
+   	padding:0.5rem;
+   	color:#fff;
+   	border-radius: 0.2rem;
+}
+#imgCap{
+	margin-top:0.5rem;
+}
+.yzm .yzm_pic a {
+    color: #ff9f00;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    font-size: 0.7rem;
+}
+.passwordbox {
+    margin: 0 auto;
+    width: 80%;
+    height: 2.2rem;
+    border-bottom: 1px solid #cccccc;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+ }
+ .register .password{
+ 	border: none;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 4%;
+    width: 92%;
+    font-size: 0.7rem;
+    background: none;
+ }
+.login_btn {
+    margin: 0 10% 0;
+    }
+.resister_go {
+	width: 100%;
+    outline: none;
+    border: none;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    background: #ff9f00;
+    color: #ffffff;
+    height: 2.0rem;
+    border-radius: 50px;
+    box-shadow: 0 6px 15px -6px #002259;
+    -webkit-appearance: none;
+}
+.login_btn a {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    color: #ff9f00;
+    text-align: center;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+/*登录*/
+.account{
+	margin: 1rem 10%;
+    width: 80%;
+    height: 2.2rem;
+    border-bottom: 1px solid #dedede;
+    overflow: hidden;
+}
+.account_text{
+	border: none;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 0 0 15%;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 0 auto;
+    display: block;
+    background: url(../img/user.jpg) no-repeat 0 center;
+
+}
+.passwordbox{
+	margin: 1rem 10%;
+    width: 80%;
+    height: 2.2rem;
+    border-bottom: 1px solid #dedede;
+    overflow: hidden;
+    position: relative;
+}
+.login .password{
+	border: none;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 0 0 15%;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 0 auto;
+    display: block;
+    background: url(../img/pwd.jpg) no-repeat 0 center;
+}
+.login_code{
+	display: block;
+    height: 1rem;
+    text-align: right;
+    color: #ff9f00;
+    padding-right: 0.6rem;
+    font-size: 0.7rem;
+    
+}
+
+.login_account{
+    height: 1rem;
+    text-align: right;
+    color: #ff9f00;
+    padding-right: 0.6rem;
+    font-size: 0.7rem;
+    display:none;
+}
+.login_go{
+	width: 100%;
+    outline: none;
+    border: none;
+    margin-bottom: 0.4rem;
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
+    background: #ff9f00;
+    color: #ffffff;
+    height: 2.0rem;
+    border-radius: 50px;
+    box-shadow: 0 6px 15px -6px #002259;
+    -webkit-appearance: none;
+}
+.none{
+	display: none;
+}
+.code{
+	border: none;
+    outline: none;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 0 0 15%;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 0 auto;
+    display: block;
+    background: url(../img/pwd.jpg) no-repeat 0 center;
+}
+#on_yzm {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+    
+    background: none;
+    color: #ff9f00;
+    font-size: 0.7rem;
+}

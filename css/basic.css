@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**Part1：Reset***********/
+*{box-sizing: border-box;}														
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, a, span, img 
+																	{ margin:0; padding:0; word-break:break-all;}
+fieldset, img														{ border:0;}
+:focus																{ outline:none;}
+address, caption, cite, code, dfn, strong, th, var, optgroup	    { font-style:normal; font-weight:normal;}
+h1, h2, h3, h4, h5, h6												{ font-size:100%; font-weight:normal;}
+input, button, textarea, select, optgroup, option					{ font-family:inherit; font-size:inherit; font-style:inherit; font-weight:inherit;}
+abbr, acronym														{ border:0px; font-variant:normal;}
+code, kbd, samp, tt													{ font-size:100%;}
+input, button, textarea, select										{ *font-size:100%;border:0;}
+ol, ul																{ list-style:none;}
+li																	{ vertical-align:bottom;}
+table																{ border-collapse:collapse; border-spacing:0; text-align:left;}
+caption, th															{ text-align:left;}
+sup, sub															{ font-size:100%; vertical-align:baseline;}
+ins																	{ text-decoration:none;}
+:link, :visited														{ text-decoration:none;}
+blockquote, q														{ quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after				{ content:""; content:none;}
+img																	{ border:0 none;} 
+a,img																{ outline:none;}
+mark,time                                     						{ background:none; display:inline; font-family:Tahoma,Geneva,sans-serif;}
+.clearfix:after                               						{ clear:both; content:"."; display:block; height:0; visibility:hidden;}
+.clearfix                                     						{ display:inline-block;}
+* html .clearfix                              						{ height:1%;}
+.clearfix                                     						{ display:block;}
+a                                             						{ cursor:pointer; outline:none; text-decoration:none; /* transition:all 0.3s ease 0s; */}
+a:hover                                       						{ text-decoration:none;}
+a:focus                                       						{ outline:none; -moz-outline:none;}
+.fl                                           						{ float:left;}
+.fr                                           						{ float:right;}
+.hc                                           						{ clear:both; font-size:0; height:0; line-height:0; overflow:hidden;}
+.hide																{ display:none;}
+i,em                                                                { font-style:normal;}
+.w1130{ width:1130px; margin:0 auto;}
+a{ -webkit-tap-highlight-color:rgba(255,0,0,0);}

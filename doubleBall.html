@@ -246,11 +246,60 @@
 			<!--红色球和蓝色球开始-->
 			<div class="mui-content-padded ball-list">
 				<ul class="mui-table-view red">
-					
+					<!--<li>01</li>
+					<li>02</li>
+					<li>03</li>
+					<li>04</li>
+					<li>05</li>
+					<li>06</li>
+					<li>07</li>
+					<li>08</li>
+					<li>09</li>
+					<li>10</li>
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+					<li>15</li>
+					<li>15</li>
+					<li>16</li>
+					<li>17</li>
+					<li>18</li>
+					<li>19</li>
+					<li>20</li>
+					<li>21</li>
+					<li>22</li>
+					<li>23</li>
+					<li>24</li>
+					<li>25</li>
+					<li>26</li>
+					<li>27</li>
+					<li>28</li>
+					<li>29</li>
+					<li>30</li>
+					<li>31</li>
+					<li>32</li>
+					<li>33</li>-->
 				</ul>
 				
 				<ul class="mui-table-view blue">
-					
+					<!--<li>01</li>
+					<li>02</li>
+					<li>03</li>
+					<li>04</li>
+					<li>05</li>
+					<li>06</li>
+					<li>07</li>
+					<li>08</li>
+					<li>09</li>
+					<li>10</li>
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+					<li>15</li>
+					<li>15</li>
+					<li>16</li>-->
 				</ul>
 			</div>
 			<div id="mask">
@@ -301,7 +350,7 @@
 					<p  style="margin-bottom: 0;" class="color-white"><span class="finish-beetNum">0</span>注 <span class="mul-num"></span>倍</p>
 				</div>
 				<div class="mui-pull-right" style="margin-top: 9px;margin-right: 5px;">
-					<button class="mui-btn mui-btn-danger" style="padding: 5px 20px;border-radius: 3px;">投注</button>
+					<button class="mui-btn mui-btn-danger" id="button" style="padding: 5px 20px;border-radius: 3px;">投注</button>
 				</div>
 			</div>
 		</div>
@@ -334,7 +383,7 @@
 				let Li=$("<li>"+(index+1)+"</li>");
 				$(".blue").append(Li);
 			});
-			//计算排列组合
+//			//计算排列组合
 			 function combination(m,n){   //计算排列组合
 			        return factorial(m,n)/factorial(n,n);  
 			        //就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)
@@ -482,8 +531,8 @@
 						$("#mask").show();
 						$("#beetinglist").show();
 						var con_list=$(".content-list");
-						var ul=$("<ul class='mui-table-view'></ul>");
-						var $li_01='<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray"></li>';
+						var ul=$("<ul class='mui-table-view list'></ul>");
+						var $li_01='<span class="mui-table-view-cell icon iconfont icon-2guanbi color-gray" style="width: 8%;display: inline-block;padding: 8px 0;"></span>';
 							ul.append($li_01);
       						con_list.append(ul);
       						//红球
@@ -502,7 +551,7 @@
 				      			con_list.append(ul)
       						});
       						let bett=$(".Betting").text();//注数
-      						let $hiddenLi='<li class="mui-table-view-cell hiddedLi" style="display:none" name="hiddenLI">'+bett+'</li>';
+      						let $hiddenLi='<span class="mui-table-view-cell hiddedLi" style="display:none;style="width: 8%;display: inline-block;padding: 8px 0;"" name="hiddenLI">'+bett+'</span>';
       						ul.append($hiddenLi);
       						$(".mul-num").text($(".num").val());
       						//计算总钱数
@@ -569,11 +618,42 @@
 					$(".finish-money").text(parseInt(2*$(".num").val()*$(".finish-beetNum").text()).toFixed(2))
 				}
 			});
-		
 	
-	
-			
-			
+			var betting=$("#button");
+			var host="http://192.168.0.124:8020/"
+			betting.click(function(){
+				var list=$(".content-list ul li:visible:not('.icon')");   //所有选择的号码
+				var bet=[];
+				for(var i=0;i<list.length-1;i++){
+					bet.push(list[i].innerHTML)
+				}
+				var bet_str = bet.join("|");//数组转化字符串
+				console.log(bet_str)
+				var a = bet_str.split();	//字符串转为数组
+				console.log(a);
+				var money=Number($(".finish-money").text())*100;  //钱数
+				var multi=Number($(".num").val());		 //倍数
+				var data = {
+						type:"DCB",
+						bet:["1|2|3|4|5|6|7","3|5|6|8|12|13|14","32|23|15|19|22|14|16","1|4|9|29|10|20|10","28|24|19|22|12|20|15"],
+						bet_num:5,
+						money:money,
+						multi:multi,
+						info:"123"
+					};
+//					$.ajax({
+//						type:"post",
+//						url:host+"userBet/lianlianDCBToPay",
+//						dataType:"json",
+//						contentType:'application/json',
+//						data:data,
+//						async:true,
+//						success:function(res){
+//							console.log(res)
+//						}
+//					});
+			})
+
 	</script>
 
 </html>

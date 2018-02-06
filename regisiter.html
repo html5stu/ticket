@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="css/basic.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+		<div class="top_banner">
+			<img src="img/banner.png">
+		</div>
+		<div class="register">
+			<form id="myform">
+				<p id="cont"></p>
+				<div class="tel"> 
+					<input class="number" name="phone" type="text" id="iphone" placeholder="请输入手机号码"> 
+				</div>
+				<div class="imgcode"> 
+					<input class="imgcode_number" name="imgcode" type="text" id="imgcode" placeholder="请输入图形验证码">
+					<div class="imgcode_pic">
+						<img id="imgCap" onclick="createCode()"/>
+					</div>
+					<input type="hidden" name="" id="hide" value="" />
+				</div>
+				<div class="yzm"> 
+					<input type="text" class="yzm_text" id="yzm" name="code" placeholder="请输入验证码"> 
+					<div class="yzm_pic" style="cursor:pointer">
+						<input type="button" name="sendcode" id="sendcode" value="发送验证码" />
+					</div> 
+				</div>
+				<div class="passwordbox"> 
+					<input type="password" name="password" class="password" id="password" placeholder="请输入您的密码"> 
+				</div>
+				<div class="login_btn"> 
+					<input type="button" class="resister_go" value="立即注册" />
+					<a href="login.html">已有账号，立即登陆</a> 
+				</div>
+				<script src="js/jquery.min.js"></script>
+				<script src="js/md5.js"></script>
+				<script src="js/common.js"></script>
+				<script src="js/regisiter.js"></script>
+			</form>
+		</div>
+	</body>
+</html>
