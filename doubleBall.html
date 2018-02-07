@@ -448,7 +448,6 @@
 				document.querySelector('.money').innerHTML=0;
 				
 			})
-			
 			//加倍
 			$(".plus").click(function(){
 				$(".num").val(parseInt($(".num").val())+1);
@@ -497,17 +496,17 @@
 						multi:multi,
 						info:"1"
 					};
-//					$.ajax({
-//						type:"post",
-//						url:host+"userBet/lianlianDCBToPay",
-//						dataType:"json",
-//						contentType:'application/json',
-//						data:data,
-//						async:true,
-//						success:function(res){
-//							console.log(res)
-//						}
-//					});
+					$.ajax({
+						type:"post",
+						url:host+"userBet/lianlianDCBToPay",
+						dataType:"json",
+						contentType:'application/json',
+						data:data,
+						async:true,
+						success:function(res){
+							console.log(res);
+						}
+					});
 			})
 
 	</script>

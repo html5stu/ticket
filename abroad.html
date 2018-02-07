@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开奖公告</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		body{
+			font-size: 13px;
+		}
+		p{
+			color: #000;
+			margin: 0;
+		}
+		.radius-red,.radius-blue{
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			line-height: 25px;
+			border-radius: 50%;
+			text-align: center;
+			color: #fff;
+			background: red;
+			margin-right: 5px;
+		}
+		.radius-blue{
+			background: blue;
+		}
+		.mui-navigate-right:after, .mui-push-right:after{
+			font-size: 25px;
+		}
+		.dcbball-time{
+			color: #ccc;
+			font-size: 12px;
+			margin-left: 10px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">开奖号码</h1>
+		</header>
+		<div class="mui-content">
+		   <ul class="mui-table-view">
+	           <li class="mui-table-view-cell">
+	               <a class="mui-navigate-right" id="rbBall">
+	                  <p class="dcbball">双色球<span class="dcbball-time">第18016期 02-06(周二)</span></p>
+	                  <span class="radius-red">01</span>
+	                  <span class="radius-red">02</span>
+	                  <span class="radius-red">03</span>
+	                  <span class="radius-red">04</span>
+	                  <span class="radius-red">05</span>
+	                  <span class="radius-red">06</span>
+	                  <span class="radius-blue">10</span>
+	               </a>
+	           </li>
+				<li class="mui-table-view-cell">
+	               <a class="mui-navigate-right">
+	                  <p class="dcbball">大乐透<span class="dcbball-time">第18017期 02-07(周三)</span></p>
+	                  <span class="radius-red">04</span>
+	                  <span class="radius-red">19</span>
+	                  <span class="radius-red">21</span>
+	                  <span class="radius-red">23</span>
+	                  <span class="radius-red">31</span>
+	                  <span class="radius-blue">04</span>
+	                  <span class="radius-blue">09</span>
+	               </a>
+	           </li>	 
+	           <li class="mui-table-view-cell">
+	               <a class="mui-navigate-right">
+	                  <p class="dcbball">福彩3D<span class="dcbball-time">第18037期 02-06(周二)</span></p>
+	                  <span class="radius-red">6</span>
+	                  <span class="radius-red">9</span>
+	                  <span class="radius-red">5</span>
+	               </a>
+	           </li>	          
+		     </ul>
+		</div>
+		<script src="js/mui.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				
+			})
+			$("#rbBall").click(function(){
+				window.location.href="doubleBallRecod.html"
+			})
+		</script>
+	</body>
+
+</html>

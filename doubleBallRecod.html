@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>双色球</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		body{
+			font-size: 13px;
+		}
+		p{
+			color: #000;
+			margin: 0;
+		}
+		.radius-red,.radius-blue{
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			line-height: 25px;
+			border-radius: 50%;
+			text-align: center;
+			color: #fff;
+			background: red;
+			margin-right: 5px;
+		}
+		.radius-blue{
+			background: blue;
+		}
+		.mui-navigate-right:after, .mui-push-right:after{
+			content: '';
+		}
+		.dcbball-time{
+			color: #ccc;
+			font-size: 12px;
+			margin-left: 10px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">双色球</h1>
+		</header>
+		<div class="mui-content">
+		   <ul class="mui-table-view">
+	           <li class="mui-table-view-cell">
+	               <a class="mui-navigate-right">
+	                  <p class="dcbball">第18016期<span class="dcbball-time">02-06(周二)</span></p>
+	                  <span class="radius-red">01</span>
+	                  <span class="radius-red">02</span>
+	                  <span class="radius-red">03</span>
+	                  <span class="radius-red">04</span>
+	                  <span class="radius-red">05</span>
+	                  <span class="radius-red">06</span>
+	                  <span class="radius-blue">10</span>
+	               </a>
+	           </li>
+	            <li class="mui-table-view-cell">
+	               <a class="mui-navigate-right">
+	                  <p class="dcbball">第18015期<span class="dcbball-time"> 02-04(周日)</span></p>
+	                  <span class="radius-red">11</span>
+	                  <span class="radius-red">15</span>
+	                  <span class="radius-red">20</span>
+	                  <span class="radius-red">21</span>
+	                  <span class="radius-red">26</span>
+	                  <span class="radius-red">33</span>
+	                  <span class="radius-blue">15</span>
+	               </a>
+	           </li>
+	            <li class="mui-table-view-cell">
+	               <a class="mui-navigate-right">
+	                  <p class="dcbball">第18014期<span class="dcbball-time"> 02-01(周四)</span></p>
+	                  <span class="radius-red">09</span>
+	                  <span class="radius-red">12</span>
+	                  <span class="radius-red">20</span>
+	                  <span class="radius-red">24</span>
+	                  <span class="radius-red">28</span>
+	                  <span class="radius-red">31</span>
+	                  <span class="radius-blue">07</span>
+	               </a>
+	           </li>
+		     </ul>
+		</div>
+		<script src="js/mui.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				
+			})
+		</script>
+	</body>
+
+</html>

@@ -132,13 +132,13 @@
 				        <div class="mui-media-body">双色球</div>
 				    </a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 Fortune-3d">
 				    <a href="#">
 				    		  <img src="img/3d.jpg"/>
 				        <div class="mui-media-body">福彩3d</div>
 				    </a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 Fortune-seven">
 				    <a href="#">
 				    		  <img src="img/seven.jpg"/>
 				        <div class="mui-media-body">七乐彩</div>
@@ -205,9 +205,13 @@
 				window.location.href="doubleBall.html";
 			});
 			
+			$(".betting-doubleBall").click(function(){
+				window.location.href="doubleBall.html";
+			});
+			
 			//开奖公告
 			$("#notice").click(function(){
-				window.location.href="notice.html"
+				window.location.href="abroad.html"
 			})
 			
 			//个人中心
@@ -215,6 +219,29 @@
 			$("#person").click(function(){
 				window.location.href="setting.html"
 			})
+			
+			//福彩3D
+			$(".betting-threed").click(function(){
+				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				});
+			});
+			$(".Fortune-3d").click(function(){
+				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				});
+			});
+			
+			
+			//七乐彩
+			$(".betting-seven").click(function(){
+				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				});
+			})
+			
+			$(".Fortune-seven").click(function(){
+				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				});
+			});
+			
 		</script>
 	</body>
 
