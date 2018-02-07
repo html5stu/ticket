@@ -6,8 +6,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+		<link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.css"/>
 		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_526177_mbhc815vs0rg4x6r.css"/>
 		<link rel="stylesheet" href="css/mui.min.css">
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 		<style>
 			html,
 			body {
@@ -159,7 +166,10 @@
 				display: inline-block;
 				padding: 8px 0;
 			}
-			.content-list ul li:last-child{
+			/*.content-list ul li:visible:last-child{
+				color: blue;
+			}*/
+			.computerSelect li:nth-child(8){
 				color: blue;
 			}
 			#beetinglist{
@@ -234,6 +244,17 @@
 				height:50px;
 				background: rgba(0,0,0,0.9);
 			}
+			.playAuth{
+				display: block;
+				width: 80px;
+				height: 25px;
+				line-height: 25px;
+				text-align: center;
+				border: 1px solid #ccc;
+				margin-right: 20px;
+				border-radius: 20px;
+				font-size: 14px;
+			}
 		</style>
 	</head>
 	<body>
@@ -241,67 +262,28 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">双色球投注</h1>
 		</header>
+		<div id="loading">
+			<div id="loading-center">
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two"></div>
+					<div class="object" id="object_three"></div>
+				</div>
+			</div>
+		</div>
 		<div class="mui-content">
 			<p class="mui-clearfix padd5 font-12"><span class="mui-pull-left" style="margin-top: 7px;">最少选择6个<i style="color: red;">红球</i>，1个<i style="color: blue;">蓝球</i></span><span class="mui-pull-right com-option">机选</span></p>
 			<!--红色球和蓝色球开始-->
 			<div class="mui-content-padded ball-list">
 				<ul class="mui-table-view red">
-					<!--<li>01</li>
-					<li>02</li>
-					<li>03</li>
-					<li>04</li>
-					<li>05</li>
-					<li>06</li>
-					<li>07</li>
-					<li>08</li>
-					<li>09</li>
-					<li>10</li>
-					<li>11</li>
-					<li>12</li>
-					<li>13</li>
-					<li>14</li>
-					<li>15</li>
-					<li>15</li>
-					<li>16</li>
-					<li>17</li>
-					<li>18</li>
-					<li>19</li>
-					<li>20</li>
-					<li>21</li>
-					<li>22</li>
-					<li>23</li>
-					<li>24</li>
-					<li>25</li>
-					<li>26</li>
-					<li>27</li>
-					<li>28</li>
-					<li>29</li>
-					<li>30</li>
-					<li>31</li>
-					<li>32</li>
-					<li>33</li>-->
+				
 				</ul>
 				
 				<ul class="mui-table-view blue">
-					<!--<li>01</li>
-					<li>02</li>
-					<li>03</li>
-					<li>04</li>
-					<li>05</li>
-					<li>06</li>
-					<li>07</li>
-					<li>08</li>
-					<li>09</li>
-					<li>10</li>
-					<li>11</li>
-					<li>12</li>
-					<li>13</li>
-					<li>14</li>
-					<li>15</li>
-					<li>15</li>
-					<li>16</li>-->
+					
 				</ul>
 			</div>
+			<span class="mui-pull-right playAuth">？玩法说明</span>
 			<div id="mask">
 				
 			</div>
@@ -355,148 +337,16 @@
 			</div>
 		</div>
 	</body>
-	<script src="js/jquery.min.js"></script>
 	<script src="js/mui.js"></script>
 	<script src="js/mui.view.js"></script>
+	<script src="js/doubleBall.js"></script>
 	<script src="js/select.js"></script>
 	<script>
 		mui.init({
 			swipeBack: false,
 		});
-			//循环遍历红色球数字
-			var redArr=[];
-			for(var i=1;i<34;i++){
-				redArr.push(i)
-			}
-			
-			$(redArr).each(function(index,value){
-				var li=$("<li>"+(index+1)+"</li>")
-				$(".red").append(li)
-			})
-			
-			//循环遍历蓝色球数字
-			var blueArr=[];
-			for(var i=1;i<17;i++){
-				blueArr.push(i)
-			}
-			$(blueArr).each(function(index,value){
-				let Li=$("<li>"+(index+1)+"</li>");
-				$(".blue").append(Li);
-			});
-//			//计算排列组合
-			 function combination(m,n){   //计算排列组合
-			        return factorial(m,n)/factorial(n,n);  
-			        //就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)
-			    }  
-		    //计算阶乘
-		    function factorial(m,n){  
-		        var num = 1;  
-		        var count = 0;  
-		        for(var i = m;i > 0;i--){  
-		            if(count == n){		//当循环次数等于指定的相乘个数时，即跳出for循环  
-		                break;  
-		            }  
-		            num = num * i;  
-		            count++;  
-		        }  
-		        return num;  
-		    }  
-			//计算多少注多少钱
-			function calculate(){
-				var redActiveLen=$(".red").find("li.active").length;
-				var blueActiveLen=$(".blue").find("li.active").length;
-				if(redActiveLen<6){
-					$(".Betting").text(0);
-					$(".money").text(0);
-					return false;
-				}else{
-					var betting=Number(combination(redActiveLen,6)*(blueActiveLen));
-					$(".Betting").text(betting);
-					var money=Number(betting*2);
-					$(".money").text(money);
-				}
-			}
-			//把产生随机数的数组挂载到原型上
-			Array.prototype.in_array = function(element) {
-				for(var i = 0; i < this.length; i++) {
-					if(this[i] == element) {
-						return true;
-					}
-				}
-				return false;
-			}
-			let btn = document.querySelector(".com-option");
-			let lis = document.querySelectorAll(".red li");
-			let bluelis=document.querySelectorAll(".blue li");
-			let redActive = [],
-				blueActive = [];
-			//点击机选清除掉之前的所有被选中的数字
-			function deleteALlnumber(){
-				let ball_list=document.getElementsByClassName('ball-list')[0];
-				let Li_list=ball_list.getElementsByTagName('li');
-				let $Li_list=$(Li_list);
-				$Li_list.removeClass("active");
-			}
-//			产生随机数方法
-			function  produceRandom(){
-				removeClass();
-				redActive = [];
-				blueActive = [];
-				for(let i = 0; redActive.length < 6; i++) {
-					let radom = Math.random() * 33;
-					let redItem = Math.floor(radom);
-					if(!redActive.in_array(redItem)) {
-						redActive.push(redItem);
-					}
-				}
-				for(let i = 0; blueActive.length < 1; i++) {
-					let radom = Math.random() * 16;
-					let blueItem = Math.floor(radom);
-					if(!blueActive.in_array(blueItem)) {
-						blueActive.push(blueItem);
-					}
-				}
-			}
-		
-			//点击机选产生一组随机数
-			btn.onclick = function () {
-				deleteALlnumber();
-				produceRandom();
-				addClass();
-				calculate();//调用 计算多少注多少钱的方法
-					
-			}
-		//给机选选中的随机数添加active类
-		function addClass() {
-			for (let i of redActive) {
-				lis[i].classList.add("active");
-			}
-
-			for (let i of blueActive) {
-				bluelis[i].classList.add("active");
-			}
-		}
-		//每次点击机选把之前选中的随机数清除
-		function removeClass() {
-			for (let i of redActive) {
-				lis[i].classList.remove("active");
-			}
-			for (let i of blueActive) {
-				bluelis[i].classList.remove("active");
-			}
-		}
-		//计算多少注   多少钱
-			$(".ball-list").find("li").click(function(){
-				$(this).toggleClass("active");
-				calculate();
-			})
-		//点击删除按钮，清除所选号码
-		$(".mui-icon-trash").click(function(){
-			deleteALlnumber();
-			calculate();
-			document.querySelector('.Betting').innerHTML=0;
-			document.querySelector('.money').innerHTML=0;
-			
+		$(".playAuth").click(function(){
+			window.location.href="help.html"
 		})
 		let btn_sure=document.getElementById("btn-sure");
 		btn_sure.onclick=function(){
@@ -516,9 +366,7 @@
 				}
 				let blueArray=blueActiveArr.splice(0,blueActiveArr.length-6);//选中的蓝色球数组
 			    let blueStr=blueArray.join();//蓝色球字符串
-			    
 			    var andArray=redArray.concat(blueArray); //合并之后的数组
-			    
 				if(redActiveNum.length<6){
 						mui.alert("请至少选择6个红球",'',function(){
 						})
@@ -532,7 +380,7 @@
 						$("#beetinglist").show();
 						var con_list=$(".content-list");
 						var ul=$("<ul class='mui-table-view list'></ul>");
-						var $li_01='<span class="mui-table-view-cell icon iconfont icon-2guanbi color-gray" style="width: 8%;display: inline-block;padding: 8px 0;"></span>';
+						var $li_01='<li class="mui-table-view-cell icon iconfont icon-2guanbi color-gray"></li>';
 							ul.append($li_01);
       						con_list.append(ul);
       						//红球
@@ -551,7 +399,7 @@
 				      			con_list.append(ul)
       						});
       						let bett=$(".Betting").text();//注数
-      						let $hiddenLi='<span class="mui-table-view-cell hiddedLi" style="display:none;style="width: 8%;display: inline-block;padding: 8px 0;"" name="hiddenLI">'+bett+'</span>';
+      						let $hiddenLi='<li class="mui-table-view-cell hiddedLi" style="display:none;" name="hiddenLI">'+bett+'</li>';
       						ul.append($hiddenLi);
       						$(".mul-num").text($(".num").val());
       						//计算总钱数
@@ -561,7 +409,7 @@
 								bettArr.push(aa[i].innerHTML)
 							}
 							var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
-							var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+							var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数  --->计算一个数组的和
 							if(bettArr.length == 0) allBettNum=0;
 							allBettNum=computerSelect+allBettNum;
 							$(".finish-beetNum").text(allBettNum);
@@ -578,7 +426,7 @@
 						bettArr.push(aa[i].innerHTML)
 					}
 					var 	computerSelect=$(".computerSelect").length;//计算点击机选一注或则5注的注数
-					var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数
+					var allBettNum=eval(bettArr.join("+"));//计算选择号码页面的总注数----->计算一个数组的和
 					if(bettArr.length == 0) allBettNum=0;
 					allBettNum=computerSelect+allBettNum;
 					$(".finish-beetNum").text(allBettNum);
@@ -618,28 +466,36 @@
 					$(".finish-money").text(parseInt(2*$(".num").val()*$(".finish-beetNum").text()).toFixed(2))
 				}
 			});
-	
 			var betting=$("#button");
 			var host="http://192.168.0.124:8020/"
 			betting.click(function(){
-				var list=$(".content-list ul li:visible:not('.icon')");   //所有选择的号码
+				var list=$(".list");   //所有选择的号码
 				var bet=[];
-				for(var i=0;i<list.length-1;i++){
-					bet.push(list[i].innerHTML)
+				for(var i=0;i<list.length;i++){
+					bet.push(list[i].innerText)
 				}
-				var bet_str = bet.join("|");//数组转化字符串
-				console.log(bet_str)
-				var a = bet_str.split();	//字符串转为数组
-				console.log(a);
+				var newNum=[];//所有投注数组
+				for(i = 1, len = bet.length+1; i < len; i++){
+					  var a=  bet[i-1];
+					  var newa="";
+					  for(j = 1, lenj = a.length+1; j < lenj; j++){
+					  b = a[j-1];
+					  newa+=b;
+					  if(j%2==0&&j<a.length)
+					   newa+='|';
+					  }
+					  newNum.push(newa);
+				}
+				var bet_num=newNum.length;//投注数量
 				var money=Number($(".finish-money").text())*100;  //钱数
-				var multi=Number($(".num").val());		 //倍数
+				var multi=Number($(".num").val());	//倍数
 				var data = {
 						type:"DCB",
-						bet:["1|2|3|4|5|6|7","3|5|6|8|12|13|14","32|23|15|19|22|14|16","1|4|9|29|10|20|10","28|24|19|22|12|20|15"],
-						bet_num:5,
+						bet:newNum,
+						bet_num:bet_num,
 						money:money,
 						multi:multi,
-						info:"123"
+						info:"1"
 					};
 //					$.ajax({
 //						type:"post",

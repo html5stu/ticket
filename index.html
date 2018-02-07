@@ -64,6 +64,9 @@
 			    float: right;
 			    margin-top: 10px;
 			}
+			.mui-content{
+				background: #fff;
+			}
 		</style>
 	</head>
 	<body>
@@ -72,11 +75,11 @@
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">购彩大厅</span>
 			</a>
-			<a id="defaultTab" class="mui-tab-item">
+			<a id="notice" class="mui-tab-item">
 				<span class="mui-icon mui-icon-chatbubble"></span>
 				<span class="mui-tab-label">开奖公告</span>
 			</a>
-			<a class="mui-tab-item">
+			<a id="person" class="mui-tab-item">
 				<span class="mui-icon mui-icon-person"></span>
 				<span class="mui-tab-label">个人中心</span>
 			</a>
@@ -197,8 +200,20 @@
 				slider.slider({
 				interval: 3000
 			});
+			//进入双色球
 			$("#doubleBall").click(function(){
 				window.location.href="doubleBall.html";
+			});
+			
+			//开奖公告
+			$("#notice").click(function(){
+				window.location.href="notice.html"
+			})
+			
+			//个人中心
+			
+			$("#person").click(function(){
+				window.location.href="setting.html"
 			})
 		</script>
 	</body>

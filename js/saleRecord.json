@@ -1,0 +1,22 @@
+{
+	"code":0,
+	"message":"获取成功",
+	"data":{
+		"list":[
+				{
+	                "goodsType": "投注日期",
+	                "saleMoney":"双色球【代购】",
+	                "saleTime": "10元" ,
+	                 "Type": "2017-01-09",
+	                "id":1
+                },
+                {
+	                "goodsType": "投注日期",
+	                "saleMoney":"双色球【代购】",
+	                "saleTime": "10元" ,
+	                 "Type": "2017-01-09",
+	                "id":2
+                }
+		]
+	}
+}

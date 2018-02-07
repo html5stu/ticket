@@ -153,14 +153,13 @@
 					url:url3,
 					async:false,
 					success:function(res){
-						console.log(res)
 						if(res.code==0){
 							var uid=res.data.uid;
 							var token=res.data.token;
 							sessionStorage.setItem("id",uid);
 							sessionStorage.setItem("tok",token);
 							sessionStorage.setItem('phone',phone);
-							window.location.href="center.html";
+							window.location.href="index.html";
 						}else{
 							alert(res.message)
 						}

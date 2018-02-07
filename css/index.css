@@ -4,7 +4,8 @@
     text-align: center;
 }
 .top_banner img{
-	width: 40%;
+	border-radius: 50%;
+    width: 50%;	
     max-width: 250px;
 }
 .register,.login{
