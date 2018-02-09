@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			body{
+				font-size: 14px;
+				background: #fff;
+			}
+			.bg-gray{
+				background: #efeff4;
+			}
+			ul,li{
+				list-style: none;
+			}
+			.plan{
+				margin: 0;
+				padding-left: 10px;
+			}
+			.mui-content-padded{
+				margin: 0;
+				background: #fff;
+			}
+			.bet_num,.bet_time{
+				display: inline-block;
+			}
+			.ml20{
+				margin-left: 20px;
+			}
+			.mt20{
+				margin-top: 20px;
+			}
+			.bet_list{
+				width: 90%;
+				margin: 10px auto;
+				overflow: hidden;
+				text-align: center;
+			}
+			.mui-table-view:after{
+				height: 0;
+			}
+			.bet_list li{
+				padding: 0;
+				display: inline-block;
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				border-radius: 50%;
+				text-align: center;
+				margin-right: 10px;
+				border: 1px solid red;
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">投注详情</h1>
+		</header>
+		<div class="mui-content">
+		    <p class="plan">方案内容</p>
+		    <div class="mui-content-padded">
+		    		<span class="bet_num ml20 mt20">投注号码</span>
+		    		<div class="numberList">
+		    		  <!--<ul class="mui-table-view bet_list">
+			    			<li class="mui-table-view-cell">01</li>
+			    			<li class="mui-table-view-cell">02</li>
+			    			<li class="mui-table-view-cell">03</li>
+			    			<li class="mui-table-view-cell">04</li>
+			    			<li class="mui-table-view-cell">05</li>
+			    			<li class="mui-table-view-cell">06</li>
+			    			<li class="mui-table-view-cell">07</li>
+		    			</ul>-->
+		    		</div>
+		    		 <p class="ml20">投注倍数：<span class="num"></span>注<span class="multi"></span>倍</p>
+		    	     <p class="plan bg-gray">方案信息</p>
+		    	     <span class="bet_time ml20 mt20">投注时间:</span><span class="time"></span>
+		    	      <p class="plan bg-gray">温馨提示</p>
+		    	      <p>1、中奖后奖金将转让您的彩票账户余额，我们将及时通知您所获得的彩票状态。</p>
+		    	      <p>2、如因故未能成功出票，我们将退款至可用余额。</p>
+		    </div>
+		</div>
+		<script src="js/mui.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript">
+			mui.init()
+				var url=window.location.search;
+				var recordId = url.substring(url.indexOf('=')+1, url.length); //获取ID
+			$.ajax({
+				type:"get",
+				url:host+"userBet/recordDetail?uid=432957919&recordId=2",
+				async:true,
+				success:function(res){
+					console.log(res)
+					var data=res.data;
+					let multi=data.multi;
+					let bet_time=data.bet_time;
+					let bet_num=data.bet_num;
+					$(".num").text(bet_num)
+					$(".time").text(bet_time)
+					$(".multi").text(multi);
+					if(res.code == 0){
+						
+					}else{
+						alert(res.message)
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

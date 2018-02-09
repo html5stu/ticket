@@ -2,25 +2,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-	    <meta itemprop="name" content="零用贷款，“贷”来幸福，申请简单、极速放款"/>
-		<meta name="description" itemprop="description" content="零用宝，申请简单，快速到账。您的信用可以换钱，快来试试吧" />
 		<meta name="format-detection" content="telephone=no">
 		<meta name="format-detection" content="address=no">
 		<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
-		<title>零用宝</title>
+		<title>登录</title>
 		<link rel="shortcut icon" type="img/x-icon" href="img/fav.ico"/>
 		<link rel="stylesheet" href="css/basic.css" />
 		<link rel="stylesheet" href="css/common.css" />
 		<link rel="stylesheet" href="css/font.css" />
 		<link rel="stylesheet" href="css/index.css" />
- 
 	</head>
 	<body>
 		<div class="top_banner">
-			<img src="img/banner.png">
+			<img src="img/banner1.jpg">
 		</div>
 		<div class="login">
-			
 				<div class="account"> 
 					<input class="account_text" id="phone" type="text" name="phone" placeholder="请输入您的账号">
 				</div>
@@ -156,10 +152,10 @@
 						if(res.code==0){
 							var uid=res.data.uid;
 							var token=res.data.token;
-							sessionStorage.setItem("id",uid);
-							sessionStorage.setItem("tok",token);
+							sessionStorage.setItem("uid",uid);
+							sessionStorage.setItem("token",token);
 							sessionStorage.setItem('phone',phone);
-							window.location.href="index.html";
+							window.location.href="doubleBall.html";
 						}else{
 							alert(res.message)
 						}

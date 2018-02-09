@@ -126,8 +126,10 @@
 				success:function(res){
 					console.log(res);
 					if(res.code==0){
-//						cont.text("注册成功,即将前往登录").show().delay(5000).fadeOut();
-						window.location.href="middle_login.html";
+						cont.text("注册成功").show().delay(3000).fadeOut();
+							setTimeout(function(){
+								window.location.href="login.html"
+							},3000)
 					}else{
 						cont.text(res.message).show().delay(3000).fadeOut();
 					}

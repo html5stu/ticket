@@ -200,45 +200,50 @@
 				slider.slider({
 				interval: 3000
 			});
+			var uid=sessionStorage.getItem("uid");
+			var token=sessionStorage.getItem("token");
 			//进入双色球
 			$("#doubleBall").click(function(){
 				window.location.href="doubleBall.html";
 			});
 			
 			$(".betting-doubleBall").click(function(){
-				window.location.href="doubleBall.html";
+					window.location.href="doubleBall.html";
 			});
 			
 			//开奖公告
 			$("#notice").click(function(){
 				window.location.href="abroad.html"
 			})
-			
 			//个人中心
-			
 			$("#person").click(function(){
-				window.location.href="setting.html"
+				
+				console.log(uid);
+				console.log(token);
+				if(!uid){
+					window.location.href="regisiter.html"
+				}else{
+					window.location.href="setting.html"
+				}
 			})
-			
 			//福彩3D
 			$(".betting-threed").click(function(){
-				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				mui.alert('此彩种暂未开放，敬请期待', '提示', function() {
 				});
 			});
 			$(".Fortune-3d").click(function(){
-				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				mui.alert('此彩种暂未开放，敬请期待', '提示', function() {
 				});
 			});
 			
-			
 			//七乐彩
 			$(".betting-seven").click(function(){
-				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				mui.alert('此彩种暂未开放，敬请期待', '提示', function() {
 				});
 			})
 			
 			$(".Fortune-seven").click(function(){
-				mui.alert('此彩种暂未开放，请稍后购买', '提示', function() {
+				mui.alert('此彩种暂未开放，敬请期待', '提示', function() {
 				});
 			});
 			

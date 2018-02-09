@@ -23,6 +23,15 @@
 				padding-bottom: 50px;
 				
 			}
+			.mui-bar{
+					background: red;
+				}
+				.mui-bar-nav {
+				    -webkit-box-shadow: 0 1px 6px #ccc;
+				}
+				.mui-title,.mui-icon-left-nav{
+					color: #fff;
+				}
 			/*自定义css*/
 			.mui-content{
 				background: #fff;
@@ -255,6 +264,16 @@
 				border-radius: 20px;
 				font-size: 14px;
 			}
+			.cont{
+				position: absolute;
+			    padding: 10px 20px;
+			    background: rgba(0,0,0,0.7);
+			    left: 33%;
+			    bottom: 30%;
+			    border-radius: 5px;
+			    color: #fff;
+			    display: none;
+			    }
 		</style>
 	</head>
 	<body>
@@ -316,13 +335,14 @@
 			</div>
 			<div class="deleteAll" style="overflow: hidden;padding-left: 26px; padding-right: 26px;">
 				<div class="mui-pull-left">
-					<input type="checkbox" name="" id="" value="" style="vertical-align: middle;"/>
-					<label for="" style="font-size: 10px;color: #333;">我已阅读并同意<i style="color: #0062cc;font-style: normal;">《服务协议》</i></label>
+					<input type="checkbox" name="" id="" value="" style="vertical-align: middle;" checked="checked"/>
+					<label for="" style="font-size: 10px;color: #333;">我已阅读并同意<i style="color: #0062cc;font-style: normal;" class="service">《服务协议》</i></label>
 				</div>
 				<div class="mui-pull-right" style="color: #ccc; font-size: 12px;">
 					<span>清空所有</span>
 				</div>
 			</div>
+			<p class="cont">注册成功</p>
 			<div class="mult">
 				投<span class="del">-</span> <input class="num" value="1"> <span class="plus">+</span>倍
 			</div>
@@ -341,12 +361,18 @@
 	<script src="js/mui.view.js"></script>
 	<script src="js/doubleBall.js"></script>
 	<script src="js/select.js"></script>
+	<script src="js/common.js">	</script>
 	<script>
 		mui.init({
 			swipeBack: false,
 		});
+		//帮助中心
 		$(".playAuth").click(function(){
 			window.location.href="help.html"
+		});
+		//服务协议
+		$(".service").click(function(){
+			window.location.href="service.html"
 		})
 		let btn_sure=document.getElementById("btn-sure");
 		btn_sure.onclick=function(){
@@ -466,8 +492,10 @@
 				}
 			});
 			var betting=$("#button");
-			var host="http://192.168.0.124:8020/"
+			var uid=sessionStorage.getItem("uid");
+			var token=sessionStorage.getItem("token");
 			betting.click(function(){
+				if(!uid) window.location.href="regisiter.html"
 				var list=$(".list");   //所有选择的号码
 				var bet=[];
 				for(var i=0;i<list.length;i++){
@@ -485,6 +513,7 @@
 					  }
 					  newNum.push(newa);
 				}
+
 				var bet_num=newNum.length;//投注数量
 				var money=Number($(".finish-money").text())*100;  //钱数
 				var multi=Number($(".num").val());	//倍数
@@ -494,21 +523,31 @@
 						bet_num:bet_num,
 						money:money,
 						multi:multi,
-						info:"1"
+						period:"1"
 					};
 					$.ajax({
 						type:"post",
-						url:host+"userBet/lianlianDCBToPay",
+						url:host+"userBet/userBetToPay?uid="+uid+"&token="+token,
 						dataType:"json",
 						contentType:'application/json',
-						data:data,
+						data:JSON.stringify(data),
 						async:true,
 						success:function(res){
-							console.log(res);
+							var cont=$(".cont");
+							if(res.code == 200){
+								let url1=res.url;
+								cont.text("投注成功").show().delay(2000).fadeOut();
+									setTimeout(function(){
+										window.location.href=url1+"&uid="+uid+"&token="+token
+									},3000)
+							}else{
+								mui.alert(res.message,"提示",function(){
+								})
+							}
 						}
 					});
 			})
-
 	</script>
+	
 
 </html>

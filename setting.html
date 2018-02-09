@@ -140,6 +140,18 @@
 			#winningList li{
 				text-align: center;
 			}
+			.mui-navbar{
+				background: red;
+			}
+			.mui-bar-nav {
+		    -webkit-box-shadow: 0 1px 6px #ccc;
+		}
+		.mui-title,.mui-icon-left-nav{
+			color: #fff;
+		}
+		.mui-bar .mui-btn-link{
+			color: #fff;
+		}
 
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/feedback.css" />
@@ -163,7 +175,7 @@
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
 					<span class="mui-icon mui-icon-left-nav"></span>
 				</button>
-				<h1 class="mui-center mui-title">设置</h1>
+				<h1 class="mui-center mui-title">个人中心</h1>
 			</div>
 			<!--页面标题栏结束-->
 			<!--页面主内容区开始-->
@@ -192,6 +204,11 @@
 								
 							</li>
 						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								<a class="logout">退出登录</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -201,7 +218,7 @@
 		<div id="account" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>设置
+					<span class="mui-icon mui-icon-left-nav"></span>个人中心
 				</button>
 				<h1 class="mui-center mui-title">投注记录</h1>
 			</div>
@@ -218,7 +235,7 @@
 		<div id="notifications" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>设置
+					<span class="mui-icon mui-icon-left-nav"></span>个人中心
 				</button>
 				<h1 class="mui-center mui-title">新消息通知</h1>
 			</div>
@@ -432,7 +449,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="feedback" class="mui-page feedback">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
@@ -493,6 +509,7 @@
 	<script src="js/mui.js "></script>
 	<script src="js/mui.view.js "></script>
 	<script src='js/feedback.js'></script>
+	<script src="js/common.js"></script>
 	
 	<script>
 		mui.init();
@@ -519,32 +536,34 @@
 		if(mui.os.stream){
 			document.getElementById("check_update").display = "none";
 		}
-		//投注记录
+			//投注记录
 			var  arr=[];//存放列表数据
 			var winningList=$("#winningList");
-			$.ajax('js/saleRecord.json',{
-				dataType:'json',//服务器返回json格式数据
+			$.ajax({
+				url:host+'userBet/records?uid=432957919',
 				type:'get',//HTTP请求类型
-				success:function(data){
-					var list=data.data.list;
+				dataType:'json',//服务器返回json格式数据
+				success:function(res){
+					let list=res.data.recordlist;
+					console.log(list);
 					$(list).each(function(index,value){
 						arr.unshift(value)
 					})
 					$(arr).each(function(index,value){
 						var val=arr[index];
 						winningList.append(
-							'<li class="mui-table-view-cell">'+
+							'<li class="mui-table-view-cell bet_detail" id='+val.recordId+'>'+
 					           '<div class="mui-pull-left mui-col-sm-4 mui-col-xs-4" style="width:33%">'+
-					           		'<span class="mui-block">'+val.goodsType+'</span>'+
-					           		'<span class="mui-block">'+val.Type+'</span>'+
+					           		'<span class="mui-block">'+"投注日期"+'</span>'+
+					           		'<span class="mui-block">'+val.bet_time+'</span>'+
 					           '</div>'+
-					           '<div class="mui-pull-left mui-col-sm-4 mui-col-xs-4" style="width:33%">'+
-					           		'<span class="mui-block">'+val.saleTime+'</span>'+
-					           		'<span class="mui-block">'+val.saleMoney+'</span>'+
+					           '<div class="mui-pull-left mui-col-sm-4 mui-col-xs-4" style="width:34%">'+
+					           		'<span class="mui-block">'+val.money+'</span>'+
+					           		'<span class="mui-block">'+val.type+'</span>'+
 					           '</div>'+
 					            '<div class="mui-pull-left mui-col-sm-4 mui-col-xs-4" style="width:33%">'+
-					           		'<span class="mui-block">'+val.status+'</span>'+
-					           		'<span class="mui-block">'+val.winstatus+'</span>'+
+					           		'<span class="mui-block">'+val.ticketStatus+'</span>'+
+					           		'<span class="mui-block">'+val.payStatus+'</span>'+
 					           '</div>'+
 					        '</li>'
 						)
@@ -554,6 +573,17 @@
 				}
 			});
 			
+//			进入详情页
+			$("#winningList").on("click",".bet_detail",function(){
+				var recordId=$(this).attr("id");
+				window.location.href="bet_detail.html?recordId="+recordId;
+			})
+			//退出登录
+			$(".logout").click(function(){
+				sessionStorage.removeItem("uid");
+				sessionStorage.removeItem("token");
+				window.location.href="index.html";
+			})
 			//账户明细
 			$(".accountDetail").click(function(){
 				mui.alert('此功能暂未开放，请稍后重试', '提示', function() {

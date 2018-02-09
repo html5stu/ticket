@@ -1,0 +1,24 @@
+{
+	"code":0,
+	"message":"获取成功",
+	"data":{
+		"list":[
+				{
+	                "type":"双色球",
+	                "money": "10元" ,
+	                 "bet_time": "02-09",
+	                 "ticketStatus":"待出票",
+	                 "payStatus":"支付成功",
+	                	 "id":1
+                },
+                {
+	                "type":"双色球",
+	                "money": "10元" ,
+	                 "bet_time": "01-09",
+	                  "ticketStatus":"待出票",
+	                 "payStatus":"支付成功",
+	                "id":2
+                }
+		]
+	}
+}

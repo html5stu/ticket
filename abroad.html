@@ -37,6 +37,15 @@
 			font-size: 12px;
 			margin-left: 10px;
 		}
+		.mui-bar{
+			background: red;
+		}
+		.mui-bar-nav {
+		    -webkit-box-shadow: 0 1px 6px #ccc;
+		}
+		.mui-title,.mui-icon-left-nav{
+			color: #fff;
+		}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -44,39 +53,8 @@
 		    <h1 class="mui-title">开奖号码</h1>
 		</header>
 		<div class="mui-content">
-		   <ul class="mui-table-view">
-	           <li class="mui-table-view-cell">
-	               <a class="mui-navigate-right" id="rbBall">
-	                  <p class="dcbball">双色球<span class="dcbball-time">第18016期 02-06(周二)</span></p>
-	                  <span class="radius-red">01</span>
-	                  <span class="radius-red">02</span>
-	                  <span class="radius-red">03</span>
-	                  <span class="radius-red">04</span>
-	                  <span class="radius-red">05</span>
-	                  <span class="radius-red">06</span>
-	                  <span class="radius-blue">10</span>
-	               </a>
-	           </li>
-				<li class="mui-table-view-cell">
-	               <a class="mui-navigate-right">
-	                  <p class="dcbball">大乐透<span class="dcbball-time">第18017期 02-07(周三)</span></p>
-	                  <span class="radius-red">04</span>
-	                  <span class="radius-red">19</span>
-	                  <span class="radius-red">21</span>
-	                  <span class="radius-red">23</span>
-	                  <span class="radius-red">31</span>
-	                  <span class="radius-blue">04</span>
-	                  <span class="radius-blue">09</span>
-	               </a>
-	           </li>	 
-	           <li class="mui-table-view-cell">
-	               <a class="mui-navigate-right">
-	                  <p class="dcbball">福彩3D<span class="dcbball-time">第18037期 02-06(周二)</span></p>
-	                  <span class="radius-red">6</span>
-	                  <span class="radius-red">9</span>
-	                  <span class="radius-red">5</span>
-	               </a>
-	           </li>	          
+		   <ul class="mui-table-view ball-list">
+	          
 		     </ul>
 		</div>
 		<script src="js/mui.js"></script>
@@ -85,9 +63,81 @@
 			mui.init({
 				
 			})
-			$("#rbBall").click(function(){
-				window.location.href="doubleBallRecod.html"
+			
+			$.ajax({
+				type:"get",
+				url:"js/abroad.json",
+				async:true,
+				success:function(res){
+					let ball_list=$(".ball-list");
+					let doubleBallList=res.data.doubleBall;//双色球
+					let fortune3dList=res.data.fortune3d;//福彩3D
+					//遍历双色球
+					for(var key in doubleBallList){
+						let num=doubleBallList[key].number;
+						let $li=$('<li class="mui-table-view-cell list2" id='+doubleBallList[key].id+'>'+
+						               '<a class="mui-navigate-right dcb">'+
+						                  '<p class="dcbball"><span class="type-ball">'+doubleBallList[key].type+'</span><span class="dcbball-time">'+doubleBallList[key].time+'</span></p>'+
+						              	 '<span class="radius-red">'+num[0]+'</span>'+
+						              	 '<span class="radius-red">'+num[1]+'</span>'+
+						              	 '<span class="radius-red">'+num[2]+'</span>'+
+						              	 '<span class="radius-red">'+num[3]+'</span>'+
+						              	 '<span class="radius-red">'+num[4]+'</span>'+
+						              	 '<span class="radius-red">'+num[5]+'</span>'+
+						              	 '<span class="radius-blue">'+num[6]+'</span>'+
+						              '</a>'+
+					          	 '</li>');
+					      ball_list .append($li)
+					}
+					//遍历福彩3d
+					for(var key in fortune3dList){
+						let num=fortune3dList[key].number;
+						let $li=$('<li class="mui-table-view-cell list2" id='+fortune3dList[key].id+'>'+
+						               '<a class="mui-navigate-right dcb">'+
+						                  '<p class="dcbball"><span class="type-ball">'+fortune3dList[key].type+'</span><span class="dcbball-time">'+fortune3dList[key].time+'</span></p>'+
+						              	 '<span class="radius-red">'+num[0]+'</span>'+
+						              	 '<span class="radius-red">'+num[1]+'</span>'+
+						              	 '<span class="radius-red">'+num[2]+'</span>'+
+						              '</a>'+
+					          	 '</li>');
+					      ball_list .append($li)
+					}
+				}
+			});
+			
+			$(".ball-list").on("click",".list2",function(){
+				let id=$(this).attr("id");
+				let ball_type=$(this).find(".type-ball").text();
+				window.location.href="BallRecod.html?ball_type="+ball_type
 			})
+//			$.ajax({
+//				type:"get",
+//				url:"js/abroad.json",
+//				async:true,
+//				success:function(res){
+//					console.log(res)
+//					var list=res.data.list;
+//					var ball_list=$(".ball-list");
+//					for(var key in list){
+//						var num=list[key].number;
+//						 var $li=$('<li class="mui-table-view-cell list2">'+
+//					               '<a class="mui-navigate-right" id="rbBall">'+
+//					                  '<p class="dcbball"><span>'+list[key].type+'</span><span class="dcbball-time">'+list[key].time+'</span></p>'+
+//					               '</a>'+
+//					          	 '</li>')
+//					          for(var j in num){
+//					          	var $span='<span class="radius-red">'+num[j]+'</span>'
+//					          	$li.append($span);
+//					          }
+//			           ball_list.append($li)
+//					}
+//				}
+//			})
+
+
+
+			
+			
 		</script>
 	</body>
 
